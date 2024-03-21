@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .game-button {
+            transition: transform 0.2s ease-in-out;
+        }
+        .game-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="text-center">
+        <h1 class="text-3xl font-semibold mb-4">Rock Paper Scissors Game 🪨 📄 ✂️</h1>
+        <div class="flex justify-center space-x-4">
+            <button onclick="playGame('rock')" class="game-button bg-yellow-300 hover:bg-yellow-400 px-4 py-2 rounded-md">
+                Rock 🪨
+            </button>
+            <button onclick="playGame('paper')" class="game-button bg-blue-300 hover:bg-blue-400 px-4 py-2 rounded-md">
+                Paper 📄
+            </button>
+            <button onclick="playGame('scissor')" class="game-button bg-green-300 hover:bg-green-400 px-4 py-2 rounded-md">
+                Scissors ✂️
+            </button>
+        </div>
+        <p id="result" class="mt-4 text-lg font-semibold"></p>
+    </div>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ["rock", "paper", "scissor"];
+            const computerChoice = Math.floor(Math.random() * 3);
+            let result;
+
+            if (userChoice === choices[computerChoice]) {
+                result = "It's a Tie!";
+            } else if (
+                (userChoice === "rock" && choices[computerChoice] === "scissor") ||
+                (userChoice === "paper" && choices[computerChoice] === "rock") ||
+                (userChoice === "scissor" && choices[computerChoice] === "paper")
+            ) {
+                result = "You Win! 🎉";
+            } else {
+                result = "Computer Wins! 😢";
+            }
+
+            document.getElementById('result').textContent = `Your Choice: ${userChoice} | Computer Choice: ${choices[computerChoice]}. ${result}`;
+        }
+    </script>
+</body>
+</html>
+ 
